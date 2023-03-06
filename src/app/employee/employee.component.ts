@@ -6,14 +6,15 @@ import { Employee } from '../shared/employee.model';
 import { DateObj } from '../shared/DateObj.model';
 import { Observable } from 'rxjs';
 // import { MatTableDataSource,MatSort,MatPaginator } from '@angular/material';
-import {saveAs} from "file-saver";
 import { SortEvent } from 'primeng/api';
+import {MessageService} from 'primeng/api';
+
 //import { PrimeNGConfig } from 'primeng/api';
 
 //import {PrimeNGConfig} 
 // import { PrimeNGConfig } from 'primeng/api'
 
-declare var M: any;
+// declare var M: any;
 //declare var employeeList : Employee[];
 
 interface Locale {
@@ -25,12 +26,12 @@ interface Locale {
   selector: 'app-employee',
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.css'],
-  //providers: [EmployeeService]
+  providers: [MessageService]
 })
 export class EmployeeComponent implements OnInit {
 
-  sideBar: boolean | undefined;
-
+  sideBar!: boolean;
+  // M: any;
   employee: Employee= {
     _id: "",
     email: "",
@@ -41,7 +42,7 @@ export class EmployeeComponent implements OnInit {
     dob: new Date(1-1-1970),
     salary: 0
   };
-  employeeList: Employee[] | undefined;
+  employeeList!: Employee[];
   // cols: any[];
 
   dateObj: DateObj | undefined;
@@ -66,7 +67,7 @@ export class EmployeeComponent implements OnInit {
 
  
 
-  constructor(public employeeService: EmployeeService, private _router: Router) { 
+  constructor(public employeeService: EmployeeService, private _router: Router, private messageService: MessageService) { 
    
     
     /* this.locals= [
@@ -142,18 +143,21 @@ export class EmployeeComponent implements OnInit {
       this.employeeService.postEmployee(form.value).subscribe((res) => {
         this.resetForm(form);
         this.refreshEmployeeList();
-        M.toast({ html: 'Saved successfully', classes: 'rounded' });
+        this.messageService.add({severity:'success', summary: 'Saved successfully', detail: 'Employee details saved successfully'});
+        // M.toast({ html: 'Saved successfully', classes: 'rounded' });
         // console.log("Form ID Value: "+form.value._id)
       }, 
       (error) => {
         console.error(error);
         if(error.status == 400){
-          M.toast({ html: error.error['msg'], classes: 'rounded' });
+          this.messageService.add({severity:'error', summary: 'Error', detail: error.error['msg']});
+          // M.toast({ html: error.error['msg'], classes: 'rounded' });
         }
 
         if(error.status == 501){
           if((error.error.code== 11000) && (error.error.keyPattern['username']== 1)){
-          M.toast({ html: 'The username already exists. Please enter a different username', classes: 'rounded' });
+            this.messageService.add({severity:'error', summary: 'Error', detail: 'The username already exists. Please enter a different username'});
+          // M.toast({ html: 'The username already exists. Please enter a different username', classes: 'rounded' });
           }
         }
       }
@@ -163,14 +167,15 @@ export class EmployeeComponent implements OnInit {
       this.employeeService.putEmployee(form.value).subscribe((res) => {
         this.resetForm(form);
         this.refreshEmployeeList();
-        M.toast({ html: 'Updated successfully', classes: 'rounded' });
+        this.messageService.add({severity:'success', summary: 'Updated successfully', detail: 'Employee details updated successfully'});
+        // M.toast({ html: 'Updated successfully', classes: 'rounded' });
       }, 
       (error) => {
         console.error(error);
         if(error.status == 400){
-          M.toast({ html: error.error['msg'], classes: 'rounded' });
+          this.messageService.add({severity:'error', summary: 'Error', detail: error.error['msg']});
         } else {
-          M.toast({ html: 'Error in updating user details', classes: 'rounded' });
+          this.messageService.add({severity:'error', summary: 'Error', detail: 'Error in updating user details'});
         }
 
       }
@@ -217,7 +222,7 @@ refreshDateList() {
       this.employeeService.deleteEmployee(_id).subscribe((res) => {
         this.refreshEmployeeList();
         this.resetForm(form);
-        M.toast({ html: 'Deleted successfully', classes: 'rounded' });
+        this.messageService.add({severity:'success', summary: 'Deleted successfully', detail: 'Employee details deleted successfully'});
       });
     }
   }
@@ -300,7 +305,7 @@ link.click();
       this.employeeService.deleteToken();
       this.employeeService.deleteLoggedInUserEmail();
       this._router.navigate(['/login']);
-      M.toast({ html: 'Logout successful', classes: 'rounded' });
+      this.messageService.add({severity:'success', summary: 'Logout successful'});
     }
 
     moveToDatePage(){

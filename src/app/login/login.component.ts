@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Data, Router } from '@angular/router';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, Validators, UntypedFormBuilder } from '@angular/forms';
 
 //import { RegisterLoginService } from '../shared/register-login.service';
 import { EmployeeService } from '../shared/employee.service';
@@ -17,9 +17,9 @@ export class LoginComponent implements OnInit {
 
   
   submitted = false;
-  loginForm!: FormGroup;
+  loginForm!: UntypedFormGroup;
 
-  constructor(private _router:Router, private employeeService:EmployeeService, private formBuilder: FormBuilder) {
+  constructor(private _router:Router, private employeeService:EmployeeService, private formBuilder: UntypedFormBuilder) {
     
    }
 

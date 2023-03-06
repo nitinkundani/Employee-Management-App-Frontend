@@ -21,7 +21,7 @@ box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);">
       <div class="form-group">
         <div class="input-field col s12">
           <label for="name">Name :</label> 
-          <input type="text" class= "form-control" formControlName="name" [ngClass]="{ 'is-invalid': f.name?.errors && submitted }">
+          <input type="text" class= "form-control" formControlName="name" [ngClass]="{ 'is-invalid': f.name.errors && submitted }">
           <div  *ngIf="submitted && f.name.errors" class="invalid-feedback">
             <div *ngIf="f.name.errors.required">Name is required</div>
           </div>
@@ -31,7 +31,7 @@ box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);">
       <div class="form-group">
         <div class="input-field col s12">
           <label for="role">Role :</label> 
-          <input type="text" class= "form-control" formControlName="role" [ngClass]="{ 'is-invalid': f.role?.errors && submitted }">
+          <input type="text" class= "form-control" formControlName="role" [ngClass]="{ 'is-invalid': f.role.errors && submitted }">
           <div  *ngIf="submitted && f.role.errors" class="invalid-feedback">
             <div *ngIf="f.role.errors.required">Role is required</div>
           </div>
@@ -41,7 +41,7 @@ box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);">
         <div class="form-group">
           <div class="input-field col s12">
             <label for="email">E-mail :</label> 
-            <input type="email" class= "form-control" formControlName="email" [ngClass]="{ 'is-invalid': f.email?.errors && submitted }">
+            <input type="email" class= "form-control" formControlName="email" [ngClass]="{ 'is-invalid': f.email.errors && submitted }">
             <div  *ngIf="submitted && f.email.errors" class="invalid-feedback">
               <!-- <script>console.log("Inside error block of email");</script> -->
               <div *ngIf="f.email.errors.required">Email is required</div>
@@ -55,7 +55,7 @@ box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);">
         <div class="form-group">
           <div class="input-field col s12">
             <label for="username">Username :</label> 
-            <input type="text" class= "form-control" formControlName="username" [ngClass]="{ 'is-invalid': f.username?.errors && submitted }">
+            <input type="text" class= "form-control" formControlName="username" [ngClass]="{ 'is-invalid': f.username.errors && submitted }">
             <div  *ngIf="submitted && f.username.errors" class="invalid-feedback">
               <div *ngIf="f.username.errors.required">Username is required</div>
             </div>
@@ -65,7 +65,7 @@ box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);">
         <div class="form-group">
           <div class="input-field col s12">
             <label for="password">Password :</label> 
-            <input type="password" class= "form-control" formControlName="password" [ngClass]="{ 'is-invalid': f.password?.errors && submitted }">
+            <input type="password" class= "form-control" formControlName="password" [ngClass]="{ 'is-invalid': f.password.errors && submitted }">
             <div  *ngIf="submitted && f.password.errors" class="invalid-feedback">
               <div *ngIf="f.password.errors.required">Password is required</div>
             </div>
@@ -73,7 +73,7 @@ box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);">
         </div>
       
       <div class="form-group" style="text-align:center;">
-          <button type="submit" class="btn btn-dark" [disabled]="loading">Register</button>
+          <button type="submit" class="btn btn-dark" [disabled]="!registrationForm.valid">Register</button>
           <button type="button" class="btn btn-secondary" (click)="moveToLogin()">Log in</button>
       </div>
     </form>

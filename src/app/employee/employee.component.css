@@ -82,9 +82,9 @@
      hyphens: auto;
    } */
 
-   :host ::ng-deep .p-dropdown {
+ /*   :host ::ng-deep .p-dropdown {
     width: 40rem;
-  }
+  } */
 
   
    

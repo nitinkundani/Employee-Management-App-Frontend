@@ -8,8 +8,9 @@ describe('ChangeDetectionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChangeDetectionComponent ]
-    })
+    declarations: [ChangeDetectionComponent],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   }));
 

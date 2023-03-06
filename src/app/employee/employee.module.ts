@@ -13,6 +13,7 @@ import {DropdownModule} from 'primeng/dropdown';
 //import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { myDatePipeModule } from "../myDatePipe/myDatePipe.module";
 import {TableModule} from 'primeng/table';
+import {ToastModule} from 'primeng/toast';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {TableModule} from 'primeng/table';
         DropdownModule,
         CommonModule,
         myDatePipeModule,
-        TableModule
+        TableModule,
+        ToastModule
     ],
     providers: []
     

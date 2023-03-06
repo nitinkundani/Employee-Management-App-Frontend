@@ -5,8 +5,9 @@ import { EmployeeService } from './employee.service';
 describe('EmployeeService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [EmployeeService]
-    });
+    providers: [EmployeeService],
+    teardown: { destroyAfterEach: false }
+});
   });
 
   it('should be created', inject([EmployeeService], (service: EmployeeService) => {

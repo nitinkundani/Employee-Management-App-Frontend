@@ -5,8 +5,9 @@ import { DataProviderService } from './data-provider.service';
 describe('DataProviderService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DataProviderService]
-    });
+    providers: [DataProviderService],
+    teardown: { destroyAfterEach: false }
+});
   });
 
   it('should be created', inject([DataProviderService], (service: DataProviderService) => {

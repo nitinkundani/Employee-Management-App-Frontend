@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {FormGroup,FormControl,Validators, FormBuilder} from '@angular/forms';
+import {UntypedFormGroup,FormControl,Validators, UntypedFormBuilder} from '@angular/forms';
 import { NgForm } from '@angular/forms';
 //import { RegisterLoginService } from '../shared/register-login.service';
 import { EmployeeService } from '../shared/employee.service';
@@ -16,11 +16,12 @@ declare var M: any;
   //providers: [EmployeeService]
 })
 export class RegisterComponent implements OnInit {
+[x: string]: any;
 
-  registrationForm!: FormGroup;
+  registrationForm!: UntypedFormGroup;
   submitted = false;
 
-  constructor(private _router:Router, private employeeService:EmployeeService, private formBuilder: FormBuilder) { 
+  constructor(private _router:Router, private employeeService:EmployeeService, private formBuilder: UntypedFormBuilder) { 
     /* this.employeeService.selectedEmployee = {
       _id: "",
       email: "",

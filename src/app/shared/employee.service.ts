@@ -40,7 +40,7 @@ export class EmployeeService {
 
   selectedLocale$= this.selectedLocaleSubject.asObservable();
 
-  selectedEmployee: Employee; 
+  selectedEmployee!: Employee; 
   EmployeeToShow : Employee ={
     _id: "",
     email: "",
@@ -75,7 +75,7 @@ export class EmployeeService {
   
 
   constructor(private http: HttpClient, private router: Router) {
-    this.selectedEmployee = {
+    /* this.selectedEmployee = {
       _id: "",
       email: "",
       username: "",
@@ -84,7 +84,7 @@ export class EmployeeService {
       password: "",
       dob: new Date(1-1-1970),
       salary: 0
-    }
+    } */
 
     this.locals= [
       {name: 'en-US', code: 'MM/dd/yyyy'},
